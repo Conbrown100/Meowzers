@@ -14,8 +14,29 @@ app.config['SQLALCHEMY_DATABASE_URI'] = sqlite_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import User
+from models import Profile
 
 @app.route('/')
 def index():
-    return 'Results of GET /'
+    return redirect(url_for('main'))
+    
+@app.route('/main/', methods=['GET'])
+def main():
+    return 'Here is your main page'
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    return 'Not yet implemented'
+
+@app.route('/logout/', methods=['GET'])
+def logout():
+    return 'Not yet implemented'
+
+@app.route('/profile/create/', methods=['GET'])
+def profile_create():
+    return 'Not yet implemented'
+
+@app.route('/profile/', methods=['POST'])
+def profile():
+    return 'Not yet implemented'
+
