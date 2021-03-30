@@ -17,10 +17,13 @@ db = SQLAlchemy(app)
 
 from models import Profile
 
-UPLOADS_DIR = 'static/img/profilephotos'
+IMAGE_DIR = 'static/img/profilephotos'
 
 @app.before_first_request
 def app_startup():
+    imgdir = Path(IMAGE_DIR)
+    if not imgdir.exists():
+        imgdir.mkdir(parents=True)
     try:
         Profile.query.all()
     except:
@@ -62,7 +65,7 @@ def profile():
     if infile:
         #filename = secure_filename(infile.filename)
         filename = username+'.jpg'
-        filepath = os.path.join(UPLOADS_DIR, filename)
+        filepath = os.path.join(IMAGE_DIR, filename)
         infile.save(filepath)
         profile = Profile(username=username, password=password, email=email, photofn=filename)
         db.session.add(profile)
