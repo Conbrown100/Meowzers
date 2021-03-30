@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+<h1>Create Profile</h1>
 <form method='POST' action='{{ url_for("profile") }}' enctype='multipart/form-data'>
   {% if message %}
   <div class='alert alert-danger' role='alert'>
@@ -15,26 +16,27 @@
   {% endif %}
 
   <div class='form-group'>
-    <label for='usernameInput'>Username</label>
+    <label for='username'>Username</label>
     <input type='text' class='form-control' name='username' id='username'>
   </div>
 
   <div class='form-group'>
-    <label for='passwordInput'>Password</label>
+    <label for='password'>Password</label>
     <input type='password' class='form-control' name ='password' id='password'>
   </div>
 
   <div class='form-group'>
-    <label for='emailInput'>Email</label>
+    <label for='email'>Email</label>
     <input type='email' class='form-control' name='email' id='email'>
   </div>
 
   <div class='form-group'>
-    <label for='profilePicInput'>Profile Picture</label>
+    <label for='profilePic'>Profile Picture</label>
     <input type='file' class='form-control-file' name='profilePic' id='profilePic'>
   </div>
 
   <button type="submit" class="btn btn-primary mb-2">Create Profile</button>
 </form>
 
+<p>Already have an account? <a href='{{ url_for("login") }}'>Login</a></p>
 {% endblock %}
