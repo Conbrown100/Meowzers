@@ -4,6 +4,58 @@
 {% block head %}
   {{ super() }}
   <!-- More head stuff would go here, like JS or CSS. -->
+<style>
+
+div {
+ margin: 10px;
+}
+
+input[type=text] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+}
+input[type=password] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+}
+input[type=email] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+}
+body {
+ background-image: url('../../static/img/site_img/kitty_profile.jpg');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
+}
+
+label {
+ padding-top: 10px;
+ color: #DF3612;
+ font-weight: bold;
+}
+p {
+ font-weight: bold;
+ color: #DF3612;
+}
+
+.button {
+ color: #DF3612;
+}
+
+
+</style>
+
+<body> </body>
+
+
+
 {% endblock %}
 
 {% block content %}
@@ -15,17 +67,18 @@
   </div>
   {% endif %}
 
-  <div class='form-group'>
+
+  <div class='form-group w-25'>
     <label for='username'>Username</label>
     <input type='text' class='form-control' name='username' id='username'>
   </div>
 
-  <div class='form-group'>
+  <div class='form-group w-25'>
     <label for='password'>Password</label>
     <input type='password' class='form-control' name ='password' id='password'>
   </div>
 
-  <div class='form-group'>
+  <div class='form-group w-25'>
     <label for='email'>Email</label>
     <input type='email' class='form-control' name='email' id='email'>
   </div>
@@ -35,8 +88,10 @@
     <input type='file' class='form-control-file' name='profilePic' id='profilePic'>
   </div>
 
-  <button type="submit" class="btn btn-primary mb-2">Create Profile</button>
+  <button type="submit" class="btn btn-dark mb-2">Create Profile</button>
 </form>
 
 <p>Already have an account? <a href='{{ url_for("login") }}'>Login</a></p>
 {% endblock %}
+
+
