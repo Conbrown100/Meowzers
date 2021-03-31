@@ -1,17 +1,30 @@
 {% extends 'site.html' %}
 
 
+
 {% block title %}Login{% endblock %}
 
 
 {% block head %}
   {{ super() }}
   <!-- More head stuff would go here, like JS or CSS. -->
+  
+ <h1> CAT TINDER BABY </h1>
+
 {% endblock %}
 
 
 {% block content %}
-<h1>Login</h1>
+
+#FIXME img sourc or upload image to server
+<div class="bg-image"
+ style= background-image: 
+ 
+   height: 400px;
+</div>
+ 
+
+<h1>CAT TINDER BABY</h1>
 <form method='POST' action='{{ url_for("login") }}'>
   {% if message %}
   <div class='alert alert-danger' role='alert'>
@@ -19,13 +32,13 @@
   </div>
   {% endif %}
 
-  <div class='form-group'>
-    <label for='username'>Username</label>
+  <div class='form-group w-50'>
+    <label for='username'>Meowzrname</label>
     <input type='text' class='form-control' name='username' id='username'>
   </div>
 
-  <div class='form-group'>
-    <label for='password'>Password</label>
+  <div class='form-group w-50'>
+    <label for='password'>Puurrrrzword</label>
     <input type='password' class='form-control' name ='password' id='password'>
   </div>
 
