@@ -52,7 +52,7 @@ def index():
 
 @app.route('/main/', methods=['GET'])
 def main():
-    return 'Welcome {}!'.format(session['username'])
+    return render_template('main.html', user=session['username'])
 
 
 
@@ -64,19 +64,16 @@ def login():
         # check if fields are not empty, else display error message
         username = request.form['username']
         password = request.form['password']
-        if username == '' or password == '':
-            errMsg = 'One or more fields was left empty'
-            return render_template('login.html', message=errMsg)
-
+        
         # check if username is registered, if not display error message
         if db.session.query(Profile.id).filter_by(username=username).first() is None:
-            errMsg = 'Username is not registered with an account'
+            errMsg = 'Invalid username/password combination'
             return render_template('login.html', message=errMsg)
      
         # if username is registered, check if password matched. If it does
         # save username in session and redirect to main, else produce error message      
         if db.session.query(Profile.password).filter_by(username=username).first()[0] != password:
-            errMsg = 'Incorrect password'
+            errMsg = 'Invalid username/password combination.'
             return render_template('login.html', message=errMsg)
         
         session['username'] = username
