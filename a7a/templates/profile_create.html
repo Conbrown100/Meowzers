@@ -3,95 +3,56 @@
 {% block title %}Create Profile{% endblock %}
 {% block head %}
   {{ super() }}
+  <style>
+    body{
+    background-image: url("/static/img/site_img/kitty_profile.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;}
+  </style>
+
+
+  <script src="{{ url_for('static', filename='js/profile_create.js') }}">
+  </script>
   <!-- More head stuff would go here, like JS or CSS. -->
-<style>
-
-div {
- margin: 10px;
-}
-
-input[type=text] {
- border: 2px solid black;
- border-radius: 3px;
- background-color: #DF3612;
- color: white;
-}
-input[type=password] {
- border: 2px solid black;
- border-radius: 3px;
- background-color: #DF3612;
- color: white;
-}
-input[type=email] {
- border: 2px solid black;
- border-radius: 3px;
- background-color: #DF3612;
- color: white;
-}
-body {
- background-image: url('../../static/img/site_img/kitty_profile.jpg');
- background-repeat: no-repeat;
- background-attachment: fixed;
- background-size: cover;
-}
-
-label {
- padding-top: 10px;
- color: #DF3612;
- font-weight: bold;
-}
-p {
- font-weight: bold;
- color: #DF3612;
-}
-
-.button {
- color: #DF3612;
-}
-
-
-</style>
-
-<body> </body>
-
-
-
 {% endblock %}
 
+
 {% block content %}
-<h1>Create Profile</h1>
-<form method='POST' action='{{ url_for("profile") }}' enctype='multipart/form-data'>
-  {% if message %}
-  <div class='alert alert-danger' role='alert'>
-      {{ message }}
-  </div>
-  {% endif %}
+<div class='page'>
+  <form method='POST' action='{{ url_for("profile") }}' enctype='multipart/form-data' class='container'>
+    <h1>Create Profile</h1>
+    {% if message %}
+    <div class='alert alert-danger' role='alert'>
+        {{ message }}
+    </div>
+    {% endif %}
 
+    <div class='form-group'>
+      <label for='username'>Username</label>
+      <input type='text' class='form-control' name='username' id='username'>
+    </div>
 
-  <div class='form-group w-25'>
-    <label for='username'>Username</label>
-    <input type='text' class='form-control' name='username' id='username'>
-  </div>
+    <div class='form-group'>
+      <label for='password'>Password</label>
+      <input type='password' class='form-control' name ='password' id='password'>
+    </div>
 
-  <div class='form-group w-25'>
-    <label for='password'>Password</label>
-    <input type='password' class='form-control' name ='password' id='password'>
-  </div>
+    <div class='form-group'>
+      <label for='email'>Email</label>
+      <input type='email' class='form-control' name='email' id='email'>
+    </div>
 
-  <div class='form-group w-25'>
-    <label for='email'>Email</label>
-    <input type='email' class='form-control' name='email' id='email'>
-  </div>
+    <div class='form-group'>
+      <label for='profilePic'>Profile Picture</label>
+      <input type='file' class='form-control-file' name='profilePic' id='profilePic'>
+    </div>
 
-  <div class='form-group'>
-    <label for='profilePic'>Profile Picture</label>
-    <input type='file' class='form-control-file' name='profilePic' id='profilePic'>
-  </div>
-
-  <button type="submit" class="btn btn-dark mb-2">Create Profile</button>
-</form>
-
-<p>Already have an account? <a href='{{ url_for("login") }}'>Login</a></p>
+    <button type="submit" class="btn btn-dark mb-2">Create Profile</button>
+    
+    <p>Already have an account? <a href='{{ url_for("login") }}'>Login</a></p>
+  </form>
+</div>
 {% endblock %}
 
 

@@ -1,0 +1,15 @@
+{% extends 'site.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <!-- More head stuff would go here, like JS or CSS. -->
+{% endblock %}
+
+
+{% block content %}
+  <div class='page'>
+    <h1>Welcome, {{ user }}!</h1>
+  </div>
+{% endblock %}

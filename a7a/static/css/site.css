@@ -1,0 +1,41 @@
+.page {
+  margin-top: 60px;
+}
+
+.container {
+  position: absolute;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+label {
+  color: #DF3612;
+  font-weight: bold;
+}
+
+input[type=text] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+
+}
+input[type=password] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+}
+input[type=email] {
+ border: 2px solid black;
+ border-radius: 3px;
+ background-color: #DF3612;
+ color: white;
+}
+
+a {
+  color: #DF3612
+}

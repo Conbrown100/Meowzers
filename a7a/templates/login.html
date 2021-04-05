@@ -1,81 +1,47 @@
 {% extends 'site.html' %}
 
-
-
 {% block title %}Login{% endblock %}
-
 
 {% block head %}
   {{ super() }}
+  <style>
+    body{
+    background-image: url("/static/img/site_img/kitty_login.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;}
+  </style>
 
+  <script src="{{ url_for('static', filename='js/login.js') }}">
+  </script>
 
   <!-- More head stuff would go here, like JS or CSS. -->
-<head>
-<style>
- body {
-  background-image: url("../static/img/site_img/kitty_login.jpg");
- }
- div {
-  margin: 10px;
- }
-
- h1 {
-  padding-top: 10px;
- }
-
- input[type=text]{
-  border: 2px solid black;
-  border-radius: 3px;
-  background-color: #DF3612;
-  color: white;
-}
-
- input[type=password]{
-  border: 2px solid black;
-  border-radius: 3px;
-  background-color: #DF3612;
-  color: white;
-}
-
-label {
-  color: #DF3612;
-  font-weight: bold;
-}
-
-</style>
-</head>
-
-<body>
-  
- <h1> CAT TINDER BABY </h1>
-
-</body>
-
 {% endblock %}
 
 
 {% block content %}
+<div class='page'>
+  <form method='POST' action='{{ url_for("login") }}' class='container'>
+    <h1>Login</h1>
+    {% if message %}
+    <div class='alert alert-danger' role='alert'>
+        {{ message }}
+    </div>
+    {% endif %}
 
-<h1>CAT TINDER BABY</h1>
-<form method='POST' action='{{ url_for("login") }}'>
-  {% if message %}
-  <div class='alert alert-danger' role='alert'>
-      {{ message }}
-  </div>
-  {% endif %}
+    <div class='form-group'>
+      <label for='username'>Username</label>
+      <input type='text' class='form-control' name='username' id='username'>
+    </div>
 
-  <div class='form-group w-25'>
-    <label for='username'>Meowzrname</label>
-    <input type='text' class='form-control' name='username' id='username'>
-  </div>
+    <div class='form-group'>
+      <label for='password'>Password</label>
+      <input type='password' class='form-control' name ='password' id='password'>
+    </div>
 
-  <div class='form-group w-25'>
-    <label for='password'>Puurrrrzword</label>
-    <input type='password' class='form-control' name ='password' id='password'>
-  </div>
+    <button type="submit" class="btn btn-dark mb-2">Login</button>
 
-  <button type="submit" class="btn btn-dark mb-2">Login</button>
-</form>
-
-<p>Don't have an account? <a href='{{ url_for("profile_create") }}'>Create Profile</a></p>
+    <p>Don't have an account? <a href='{{ url_for("profile_create") }}'>Create Profile</a></p>
+  </form>
+</div>
 {% endblock %}
