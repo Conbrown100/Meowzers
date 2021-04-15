@@ -1,0 +1,14 @@
+h1 {
+  color: black;
+}
+
+.post {
+    background-color: #ddd;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+
+#profile-id {
+    display: none;
+}
+

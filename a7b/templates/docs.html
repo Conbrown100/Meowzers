@@ -1,0 +1,82 @@
+{% extends "site.html" %}
+{% block title %}API Documentation{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h1>API Documentation</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Route</th>
+      <th scope="col">Params</th>
+      <th scope="col">Returns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">GET /api/posts/</th>
+      <td>
+          <strong>profile_id</strong> : integer (<em>optional</em>) - a         specific user's profile ID; if omitted, only retrieves the currently logged-in  user's posts
+      </td>
+      <td>
+        A JSON array of Post objects authored by the chosen Profile. If the     profile_id is invalid this returns [].
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row">GET /api/posts/&lt;int:post_id&gt;/</th>
+      <td>
+          <strong>post_id</strong> : integer (required) - a specific post ID
+      </td>
+      <td>
+        A single JSON Post object. If the post_id is invalid, this returns a    404 error.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">POST /api/posts/</th>
+      <td>
+          <strong>content</strong> : string (required)
+      </td>
+      <td>
+        The newly created JSON Post object
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row">POST /api/posts/&lt;int:post_id&gt;/like/</th>
+      <td>
+          <strong>post_id</strong> : integer (required)
+      </td>
+      <td>
+        The liked JSON Post object; if the post does not exist and cannot be    liked, this will return a 404.
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row">POST /api/posts/&lt;int:post_id&gt;/unlike/</th>
+      <td>
+          <strong>post_id</strong> : integer (required)
+      </td>
+      <td>
+        The unliked JSON Post object; if the post does not exist and cannot be  liked, this will return a 404.
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row">GET /api/posts/&lt;int:post_id&gt;/likes/</th>
+      <td>
+          <strong>post_id</strong> : integer (required)
+      </td>
+      <td>
+        A JSON array of Profile objects (those who have liked the given post).  If the post does not exist and cannot be liked, this will return a 404.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+{% endblock %}
+

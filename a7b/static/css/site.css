@@ -39,3 +39,8 @@ input[type=email] {
 a {
   color: #DF3612
 }
+
+ul#messages {
+    list-style-type: none;
+}
+

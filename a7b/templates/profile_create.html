@@ -10,22 +10,21 @@
     background-attachment: fixed;
     background-size: cover;}
   </style>
-
-
-  <script src="{{ url_for('static', filename='js/profile_create.js') }}">
-  </script>
   <!-- More head stuff would go here, like JS or CSS. -->
 {% endblock %}
 
 
 {% block content %}
 <div class='page'>
-  <form method='POST' action='{{ url_for("profile") }}' enctype='multipart/form-data' class='container'>
+  <form method='POST' action='{{ url_for("create_profile") }}' enctype='multipart/form-data' class='container'>
     <h1>Create Profile</h1>
-    {% if message %}
-    <div class='alert alert-danger' role='alert'>
-        {{ message }}
-    </div>
+    
+    {% if messages %}
+    <ul id="messages" class="alert alert-danger" role="alert">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
     {% endif %}
 
     <div class='form-group'>
@@ -50,9 +49,14 @@
 
     <button type="submit" class="btn btn-dark mb-2">Create Profile</button>
     
-    <p>Already have an account? <a href='{{ url_for("login") }}'>Login</a></p>
+    <p>Already have an account? <a href='{{ url_for("login_form") }}'>Login</a></p>
   </form>
 </div>
 {% endblock %}
 
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/profile_create.js') }}">
+</script>
+{% endblock %}
 

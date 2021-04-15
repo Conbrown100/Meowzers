@@ -12,9 +12,6 @@
     background-size: cover;}
   </style>
 
-  <script src="{{ url_for('static', filename='js/login.js') }}">
-  </script>
-
   <!-- More head stuff would go here, like JS or CSS. -->
 {% endblock %}
 
@@ -23,10 +20,13 @@
 <div class='page'>
   <form method='POST' action='{{ url_for("login") }}' class='container'>
     <h1>Login</h1>
-    {% if message %}
-    <div class='alert alert-danger' role='alert'>
-        {{ message }}
-    </div>
+
+    {% if messages %}
+    <ul id="messages" class="alert alert-danger" role="alert">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
 
     <div class='form-group'>
@@ -41,7 +41,14 @@
 
     <button type="submit" class="btn btn-dark mb-2">Login</button>
 
-    <p>Don't have an account? <a href='{{ url_for("profile_create") }}'>Create Profile</a></p>
+    <p>Don't have an account? <a href='{{ url_for("profile_form") }}'>Create Profile</a></p>
   </form>
 </div>
 {% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/login.js') }}">
+</script>
+{% endblock %}
+

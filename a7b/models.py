@@ -1,13 +1,14 @@
-
-from appserver import db                                                        
-
-# FIXME add serialize() method to all model classes.
+from appserver import db
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(144), unique=False, nullable=False)
-    profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
+    profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'),             nullable=False)
     likes = db.relationship('Like', backref='post', uselist=True, lazy=True)
+
+    def liked_by(self):
+        ''' Returns list of user IDs who like this post. '''
+        return list(map(lambda likey: likey.profile.id, self.likes))
 
     def serialize(self):
         return {
@@ -15,10 +16,12 @@ class Post(db.Model):
             'content': self.content,
             'profile': self.profile.serialize(),
             'numLikes': len(self.likes),
+            'likedBy': self.liked_by(),
         }
 
     def __repr__(self):
         return '<Post id=%r>' % self.id
+
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)

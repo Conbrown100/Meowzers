@@ -1,0 +1,39 @@
+{% extends "site.html" %}
+{% block title %}{{ profile.username }}'s Profile{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link href="{{ url_for('static', filename='css/profile.css') }}"              rel="stylesheet"></link>
+{% endblock %}
+{% block content %}
+
+<img src="{{ url_for('static', filename='img/profilephotos/' + profile.photofn)}}">
+
+<h1>{{ profile.username }}</h1>
+
+<span id="profile-id">{{ profile.id }}</span>
+
+{% if messages %}
+<ul id="messages" class="alert alert-danger" role="alert">
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<form id="post-form">
+  <div class="mb-3">
+    <textarea class="form-control" id="post-content" name="content"></textarea>
+  </div>
+  <button id="btn-post" type="submit" class="btn btn-primary mb-3">Post</button>
+</form>
+
+<div id="posts">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/posts.js') }}"></script>
+{% endblock %}
+
