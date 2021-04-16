@@ -10,7 +10,8 @@
 
 <h1>{{ profile.username }}</h1>
 
-<span id="profile-id">{{ profile.id }}</span>
+<span hidden id="my-profile-id">{{ myProfile.id }}</span>
+<span hidden id="profile-id">{{ profile.id }}</span>
 
 {% if messages %}
 <ul id="messages" class="alert alert-danger" role="alert">

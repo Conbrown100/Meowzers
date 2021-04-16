@@ -4,6 +4,7 @@
 
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import and_
 from werkzeug.utils import secure_filename
 import os 
 from pathlib import Path
@@ -136,7 +137,7 @@ def create_profile():
 @app.route('/profile/', methods=['GET'])
 def my_profile():
     if get_current_profile() != None:
-        return render_template('profile.html', profile=get_current_profile())
+        return render_template('profile.html', profile=get_current_profile(),myProfile=get_current_profile())
     return redirect(url_for('login_form'))
 
 
@@ -144,7 +145,7 @@ def my_profile():
 def show_profile(profile_id):
     other_profile = Profile.query.get(profile_id)
     if other_profile:
-        return render_template('profile.html', profile=other_profile)
+        return render_template('profile.html', profile=other_profile,myProfile=get_current_profile())
     else:
         abort(404)
 
