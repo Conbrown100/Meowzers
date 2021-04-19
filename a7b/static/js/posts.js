@@ -39,7 +39,7 @@ function likePost(post){
         success: function(returnPost){ 
           postElement = $('#posts').find('div[postid=' + returnPost.id + ']');
           postElement.find('.do-like').html('Unlike');
-          postElement.find('.show-likes').html(returnPost.numLikes +' likes');
+          postElement.find('.show-likes').html('('+returnPost.numLikes +' likes)');
         }
     });
 }
@@ -52,7 +52,7 @@ function unlikePost(post){
         success: function(returnPost){ 
           postElement = $('#posts').find('div[postid=' + returnPost.id + ']');
           postElement.find('.do-like').html('Like');
-          postElement.find('.show-likes').html(returnPost.numLikes +' likes');
+          postElement.find('.show-likes').html('('+returnPost.numLikes +' likes)');
         }
     });
 }
@@ -95,7 +95,7 @@ function insertPost(post) {
     var posthtml = $('<div class="post rounded" postid="'+post.id+'"></     div>');
     posthtml.append('<p>' + post.content + '</p>');
     posthtml.append('<a href="#" class="do-like">'+likedState(post)+'</a> ' +
-                    '<a href="#" class="show-likes" data-toggle="modal" data-target="#showLikesModal">'+post.numLikes+' likes</a>');
+                    '<a href="#" class="show-likes" data-toggle="modal" data-target="#showLikesModal">('+post.numLikes+' likes)</a>');
     $('#posts').append(posthtml);
     //add ability to (un)like posts to link
     var thisPost = $('#posts').find('div[postid=' + post.id + ']');
