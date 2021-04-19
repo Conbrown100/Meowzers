@@ -67,17 +67,40 @@ function likedState(post) {
 }
 
 
+function showLikes(post) {
+$.ajax({
+    type: 'GET',
+    url: '/api/posts/'+post.id+'/likes/',
+    data: { 'profile_id' : getProfileID() },
+    dataType: 'json',
+    success: function(profiles) {
+      var modalhtml = $('<div class=modal-body-content></div>');
+      profiles.forEach(function(profile) {
+        modalhtml.append('<p>' + profile.username + '</p>');  
+      });
+      $('.modal-body').html(modalhtml);
+    },
+    error: function() {
+        $('.modal-body').html('Cannot show likes. Try again later.');
+        showError('Cannot show likes. Try again later.');
+    }
+});
+}
+
+
 function insertPost(post) {
+    $('#post-content').val('');
     $('#btn-post').prop('disabled', false);
 
     var posthtml = $('<div class="post rounded" postid="'+post.id+'"></     div>');
     posthtml.append('<p>' + post.content + '</p>');
     posthtml.append('<a href="#" class="do-like">'+likedState(post)+'</a> ' +
-                    '<a href="#" class="show-likes">'+post.numLikes+' likes</a>');
+                    '<a href="#" class="show-likes" data-toggle="modal" data-target="#showLikesModal">'+post.numLikes+' likes</a>');
     $('#posts').append(posthtml);
     //add ability to (un)like posts to link
     var thisPost = $('#posts').find('div[postid=' + post.id + ']');
     var likeLink = thisPost.find('.do-like');
+    var showLink = thisPost.find('.show-likes');
     
     likeLink.click(function(event){
       event.preventDefault();
@@ -87,6 +110,12 @@ function insertPost(post) {
       else{
         unlikePost(post);
       }
+    });
+
+    showLink.click(function(event){
+      event.preventDefault();
+      $('.modal-body').html('');
+      showLikes(post);
     });
 }
 
